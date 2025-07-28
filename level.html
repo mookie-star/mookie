@@ -57,7 +57,7 @@
     }
 
     button {
-      background-color: red;
+      background-color: rgba(30, 0, 255, 0.449);
       color: white;
       padding: 10px 20px;
       font-size: 16px;
@@ -67,7 +67,7 @@
     }
 
     button:hover {
-      background-color: darkred;
+      background-color: rgb(16, 0, 139);
     }
 
     @media (max-width: 480px) {
@@ -86,12 +86,12 @@
 <body>
 
   <div class="quiz-container">
-    <h2>OKAY VADI , EN LIFE LA NERIAYA PER IRUKANGA EN FAV LIST LA <BR> AVANGALA NE ORDER PANNANUM </h2>
-    <p>eg: mookie,mookie,mookie3,mookie4,mookie5</p>
-      <p>CLUE:ONNUM ILLA KELAMBUU</p>
-    <input type="text" id="answer" placeholder="Your answer here..." />
+    <h2>ENAKKU PUDIKATHA TOP 4 DISH SOLLU</h2>
+    <p>CLUE: CLUE LA ILLA KELAMBU</p>
+    <label for="answer" style="display:none;">Answer</label>
+    <input type="text" id="answer" placeholder="Your answer here..." autocomplete="off" />
     <br>
-    <button onclick="checkAnswer()">Submit</button>
+    <button id="submit-btn" onclick="checkAnswer()">Submit</button>
   </div>
 
   <!-- Audio Feedback -->
@@ -103,9 +103,17 @@
       return text.trim().toLowerCase();
     }
 
+    const answerInput = document.getElementById("answer");
+    const submitBtn = document.getElementById("submit-btn");
+
+    answerInput.addEventListener("input", function() {
+      document.body.style.backgroundColor = "black";
+      submitBtn.disabled = false;
+    });
+
     function checkAnswer() {
-      const answer = normalize(document.getElementById("answer").value);
-      const correctAnswer = "hanisha,shivani,dinesh,poovarasan,lalita";
+      const answer = normalize(answerInput.value);
+      const correctAnswer = "upma,curd rice,fish,godhuma dosa";
 
       const correctSound = document.getElementById("correct-sound");
       const wrongSound = document.getElementById("wrong-sound");
